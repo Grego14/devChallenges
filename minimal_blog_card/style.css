@@ -1,0 +1,94 @@
+@font-face {
+	font-family: 'Sora';
+	src: local('Sora'),
+		url(./assets/fonts/static/Sora-Regular.woff2) format('woff2'),
+		url(./assets/fonts/static/Sora-Regular.ttf) format('truetype');
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: 'Sora';
+	src: local('Sora Medium'),
+		url(./assets/fonts/static/Sora-Medium.woff2) format('woff2'),
+		url(./assets/fonts/static/Sora-Medium.ttf) format('truetype');
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: 'Sora';
+	src: local('Sora Bold'),
+		url(./assets/fonts/static/Sora-Bold.woff2) format('woff2'),
+		url(./assets/fonts/static/Sora-Bold.ttf) format('truetype');
+	font-weight: 600;
+}
+
+:root{
+	--font-color: #6C727F;
+}
+
+* { box-sizing: border-box; }
+
+body{
+	margin: 0;
+	height: 100svh;
+	background: #FAFAF9;
+}
+
+.main {
+	height: 100%;
+	font-family: 'Sora';
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 0.875rem;
+	line-height: 1.265rem;
+}
+
+.wrapper{
+	max-width: 23.75rem;
+	box-shadow: 0px 30px 100px 0px rgba(17, 23, 41, 0.05);
+	border-radius: 1rem;
+	background: #FFFFFF;
+}
+
+.wrapper__inner{ padding: 1rem; }
+
+.wrapper__inner__image{
+	width: 100%;
+	height: auto;
+}
+
+.wrapper__inner__categories--design{
+	background: #E6D6FC;
+	color: #883AE1;
+	border: none;
+	appearance: none;
+	font-family: inherit;
+	font-weight: 500;
+	font-size: 0.625rem;
+	border-radius: 1rem;
+	padding: .3rem 1rem; 
+	margin: .3rem 0;
+	cursor: pointer;
+}
+
+.wrapper__inner__title{
+	font-size: 1.125rem;
+	color: #20293A;
+	margin-bottom: .6rem;
+}
+
+.wrapper__inner__text{
+	color: var(--font-color);
+	margin: 0;
+	text-wrap: balance;
+}
+
+.wrapper__author{
+	display: block;
+	border-top: 1px double #E5EAF0;
+	font-size: 0.75rem;
+	color: var(--font-color);
+	font-weight: 500;
+	padding: 1rem;
+}
