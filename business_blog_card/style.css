@@ -1,0 +1,180 @@
+@font-face {
+	font-family: 'Lato';
+	src: url('./assets/fonts/Lato-Regular.eot');
+	src: url('./assets/fonts/Lato-Regular.eot?#iefix') format('embedded-opentype'),
+		url('./assets/fonts/Lato-Regular.woff2') format('woff2'),
+		url('./assets/fonts/Lato-Regular.woff') format('woff'),
+		url('./assets/fonts/Lato-Regular.ttf') format('truetype'),
+		url('./assets/fonts/Lato-Regular.svg#Lato-Regular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Lato';
+	src: url('./assets/fonts/Lato-Bold.eot');
+	src: url('./assets/fonts/Lato-Bold.eot?#iefix') format('embedded-opentype'),
+		url('./assets/fonts/Lato-Bold.woff2') format('woff2'),
+		url('./assets/fonts/Lato-Bold.woff') format('woff'),
+		url('./assets/fonts/Lato-Bold.ttf') format('truetype'),
+		url('./assets/fonts/Lato-Bold.svg#Lato-Bold') format('svg');
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Poppins';
+	src: url('./assets/fonts/Poppins-Regular.eot');
+	src: url('./assets/fonts/Poppins-Regular.eot?#iefix') format('embedded-opentype'),
+		url('./assets/fonts/Poppins-Regular.woff2') format('woff2'),
+		url('./assets/fonts/Poppins-Regular.woff') format('woff'),
+		url('./assets/fonts/Poppins-Regular.ttf') format('truetype'),
+		url('./assets/fonts/Poppins-Regular.svg#Poppins-Regular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Poppins';
+	src: url('./assets/fonts/Poppins-Bold.eot');
+	src: url('./assets/fonts/Poppins-Bold.eot?#iefix') format('embedded-opentype'),
+		url('./assets/fonts/Poppins-Bold.woff2') format('woff2'),
+		url('./assets/fonts/Poppins-Bold.woff') format('woff'),
+		url('./assets/fonts/Poppins-Bold.ttf') format('truetype'),
+		url('./assets/fonts/Poppins-Bold.svg#Poppins-Bold') format('svg');
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
+}
+
+
+:root {
+
+	font-size: 16px;
+
+	--body-font: "Lato", sans-serif;
+	--title-font: "Poppins", sans-serif;
+
+	--font-size-small: 0.80rem;
+	--font-size-normal: 1rem;
+	--font-size-medium: 1.1rem;
+	--font-size-large: 1.5rem;
+
+	--bg-color: #F2F5F9;
+	--font-color: #111729;
+	--font-color-o: #677489;
+	--wrapper-bg-color: #FFFFFF;
+
+	--inner-padding: 2rem;
+}
+
+
+body {
+	font-family: var(--body-font), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	font-size: var(--font-size);
+	line-height: 1.5;
+	margin: 0;
+	color: var(--font-color);
+	background-color: var(--bg-color);
+}
+
+.main {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100svh;
+}
+
+.wrapper__banner {
+	position: relative;
+}
+
+.banner__image {
+	width: 100%;
+	object-fit: cover;
+	border-radius: 1rem;
+}
+
+.banner__overlay {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+}
+
+.wrapper {
+	max-width: 28rem;
+	background-color: var(--wrapper-bg-color);
+	border-radius: 1rem;
+}
+
+.wrapper__info {
+	padding: 0 var(--inner-padding);
+}
+
+.info__title {
+	font-family: var(--title-font);
+	font-weight: normal;
+	max-width: 25rem;
+	margin: 0;
+	font-size: var(--font-size-large);
+}
+
+.info__text {
+	color: var(--font-color-o);
+	max-width: 22rem;
+	margin: 1rem 0 1.5rem 0;
+	letter-spacing: 0.0035rem;
+	font-size: var(--font-size-normal)
+}
+
+.wrapper__author{
+	display: flex;
+	align-items: center;
+	gap: .8rem;
+	border-top: 1px solid var(--bg-color);
+	padding: 1.5rem var(--inner-padding);
+}
+
+.author__image {
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
+	object-fit: cover;
+	border: 4px solid var(--bg-color);
+	cursor: pointer;
+	transition: border 200ms ease-in-out;
+}
+
+.author__image:hover{
+	border: 4px solid var(--font-color-o);
+}
+
+.author__info h2{
+	margin: 0;
+	font-size: var(--font-size-medium);
+}
+
+.author__info span{
+	color: var(--font-color-o);
+	font-size: var(--font-size-small);
+	font-weight: bold;
+}
+
+@media screen and (max-width: 640px){
+	:root{
+		--font-size-small: 0.70rem;
+		--font-size-normal: .85rem;
+		--font-size-medium: 1rem;
+		--font-size-large: 1.3rem;
+
+		--inner-padding: 1.5rem;
+	}
+
+	.wrapper{
+		max-width: 20rem;
+	}
+}
