@@ -1,0 +1,185 @@
+@font-face {
+	font-family: 'Sora';
+	src: local('Sora'),
+		url('./assets/fonts/Sora-Regular.ttf'), format('truetype'),
+		url('./assets/fonts/Sora-Regular.woff2'), format('woff2');
+	font-weight: 400;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Sora';
+	src: local('Sora'),
+		url('./assets/fonts/Sora-Bold.ttf'), format('truetype'),
+	url('./assets/fonts/Sora-Bold.woff2'), format('woff2');
+	font-weight: bold;
+	font-display: swap;
+}
+
+:root{
+	--bg-color: #FAFAF9;
+	--text-color: #52525A;
+	--title-color: #18181B;
+	--white-color: #FFFFFF;
+
+	--check-color: #4CA154;
+	--star-bg-color: #F5C044;
+
+	--fs-normal: 1rem;
+	--fs-small: 0.875rem;
+	--fs-medium: 1.25rem;
+	--fs-title: 2.25rem;
+}
+
+*{ box-sizing: border-box; }
+
+body{
+	line-height: 1.5;
+	font-size: var(--fs-normal);
+	letter-spacing: 0.0030rem;
+	font-family: 'Sora', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	margin: 0;
+	background-color: var(--bg-color);
+}
+
+.main{
+	padding: 10rem 4rem;
+	height: 100svh;
+}
+
+/*   ***left section*** */
+
+.wrapper{
+	display: grid;
+	grid-template-columns: 50% 50%;
+}
+
+.wrapper__item{
+	width: 100%;
+}
+
+.wrapper__icon{
+	display: inline-block;
+	background-color: var(--star-bg-color);
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+}
+
+.svg-path{
+	box-shadow: 1px 3px 5px var(--text-color);
+}
+
+.wrapper-star-icon{
+	fill: url('#gradient');
+}
+
+.wrapper__check{
+	list-style-type:  none;
+	font-size: var(--fs-small);
+	display: flex;
+	align-items: center;
+	color: var(--text-color);
+}
+
+.wrapper__check + .wrapper__check{
+	margin-top: 0.8rem;
+}
+
+.wrapper__check__icon{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	margin-right: .4rem;
+}
+
+.wrapper__title{
+	font-size: var(--fs-title);
+	margin: 0;
+}
+
+.wrapper__reviewers{
+	margin: 1rem 0 1.5rem 0;
+}
+
+.wrapper__text{
+	font-size: var(--fs-medium);
+	color: var(--text-color);
+	margin: 0;
+	max-width: 35rem
+}
+
+/* ***right section*** */
+
+.wrapper__item--right{
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	gap: 2.5rem;
+	padding-left: 1rem;
+}
+
+.review-card{
+	background-color: var(--white-color);
+	padding: 1.5rem 1.8rem;
+	height: auto;
+	border-radius: 1rem;
+	min-width: 22rem;
+	box-shadow: 0 0 70px 0 rgb(0 0 0 / 0.1);
+	transition: box-shadow 200ms ease-in-out;
+}
+
+.review-card:hover, .review-card:focus-within{
+	box-shadow: 0 0 70px 0 rgb(0 0 0 / 0.1),
+		0 1px 15px 0 rgb(0 0 0 / 0.3), 0 1px 15px -1px rgb(0 0 0 / 0.3);
+}
+
+.review-card--google{
+	margin-left: auto;
+}
+
+.review-card--meta{
+	margin-right: auto;
+}
+
+.review-card__header{
+	display: flex;
+	align-items: center;
+	margin-bottom: 1.5rem;
+}
+
+.review-card__stars{
+	display: flex;
+	align-items: center;
+}
+
+.star{
+	display: inline-block;
+	width: 22px;
+	height: 25px;
+}
+
+.review-card__icon{
+	display: inline-block;
+	width: 80px;
+	height: 25px;
+	margin-right: 1rem;
+}
+
+.icon{
+	width: 100%;
+	min-height: 100%;
+	object-fit: cover;
+}
+
+.testimony__text{
+	display: inline-block;
+	color: var(--text-color);
+	max-width: 18rem;
+}
+
+.testimony__author{
+	font-weight: bold;
+	display: block;
+	margin: 0.5rem 0;
+}
