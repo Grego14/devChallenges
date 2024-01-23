@@ -1,0 +1,17 @@
+@font-face {
+	font-family: 'Inter';
+	src: local('Inter'), 
+		url('./assets/fonts/Inter-Regular.ttf') format('truetype'),
+	  url('./assets/fonts/Inter-Regular.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Inter';
+	src: local('Inter Bold'), 
+		url('./assets/fonts/Inter-Bold.ttf') format('truetype'),
+	  url('./assets/fonts/Inter-Bold.woff2') format('woff2');
+}
+
+:root{
+
+}
