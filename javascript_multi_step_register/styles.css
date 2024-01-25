@@ -1,22 +1,31 @@
 @font-face {
 	font-family: 'Inter';
-	src: local('Inter'), 
+	src: local('Inter'),
 		url('./assets/fonts/Inter-Regular.ttf') format('truetype'),
-	  url('./assets/fonts/Inter-Regular.woff2') format('woff2');
+		url('./assets/fonts/Inter-Regular.woff2') format('woff2');
 	font-weight: normal;
 	font-display: swap;
 }
 
 @font-face {
 	font-family: 'Inter';
-	src: local('Inter Bold'), 
+	src: local('Inter'),
+		url('./assets/fonts/Inter-SemiBold.ttf') format('truetype'),
+		url('./assets/fonts/Inter-SemiBold.woff2') format('woff2');
+	font-weight: 600;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Inter';
+	src: local('Inter Bold'),
 		url('./assets/fonts/Inter-Bold.ttf') format('truetype'),
-	  url('./assets/fonts/Inter-Bold.woff2') format('woff2');
+		url('./assets/fonts/Inter-Bold.woff2') format('woff2');
 	font-weight: bold;
 	font-display: swap;
 }
 
-:root{
+:root {
 	--fs-title: 1.25rem;
 	--fs-text: 1rem;
 	--fs-tab-text: 0.875rem;
@@ -32,10 +41,17 @@
 
 	--btn-primary: #652CD1;
 	--btn-secondary: #845EEE;
+
+	--error-color: #9D2417;
 }
 
-body{
+* {
 	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
 	font-size: var(--fs-text);
 	font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	background-color: var(--bg-body);
@@ -43,34 +59,76 @@ body{
 	line-height: 1.5;
 	letter-spacing: 0.020rem;
 	overflow: hidden;
+	height: 100svh;
 }
 
-.main{
-	height: 100svh;
+.main {
+	height: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
-.shine{
+.shine {
 	position: absolute;
-	width: 35rem;
-	height: 35rem;
-	overflow: hidden;
 	z-index: -1;
 }
 
-.shine-left{
-	left: -15%;
-	top: -25%;
+.shine--congratulations {
+	animation: shineCongratulations 1s ease-in-out infinite;
 }
 
-.shine-right{
-	right: -15%;
-	bottom: -25%;
+@keyframes shineCongratulations {
+	0% {
+		scale: 1;
+	}
+
+	50% {
+		scale: 1.2;
+	}
+
+	100% {
+		scale: 1;
+	}
 }
 
-.wrapper{
+
+.shine-left {
+	left: -25%;
+	top: -50%;
+}
+
+.shine-right {
+	right: -25%;
+	bottom: -50%;
+}
+
+/* ***global modifiers*** */
+
+.text--semibold {
+	font-weight: 600;
+}
+
+.font--gray {
+	color: var(--fc-label)
+}
+
+.font-size--medium {
+	font-size: var(--fs-text)
+}
+
+.wrapper--container {
+	width: 100%;
+}
+
+.animation--bounceAndConfetti {
+	justify-content: center;
+	align-items: center;
+}
+
+/* ***components*** */
+
+.wrapper {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -78,68 +136,187 @@ body{
 	gap: 1.2rem;
 }
 
-.wrapper__content{
+.wrapper__content {
+	display: flex;
+	flex-direction: column;
 	background-color: var(--bg-card);
-	border: 1px solid var(--bg-input);
+	border: 2px solid var(--bg-input);
 	border-radius: 1rem;
 	padding: 2.5rem 3rem;
 }
 
-.wrapper__title{
+.wrapper__title {
 	margin: 0;
-	margin-bottom: 2rem;
 	font-size: var(--fs-title)
 }
 
-.wrapper__forms{
+.title--congratulations {
+	animation: titleCongratulations 1s ease-in-out infinite;
+}
+
+@keyframes titleCongratulations {
+	0% {
+		font-size: initial;
+	}
+
+	50% {
+		font-size: var(--fs-title)
+	}
+
+	100% {
+		font-size: initial;
+	}
+}
+
+.wrapper__cards {
 	display: flex;
-	justify-content: flex-start;
 	overflow: hidden;
+	margin-top: 2.5rem;
 	max-width: 25rem;
 }
 
-.wrapper__form{
+.wrapper__cards:not([data-step='1']) {
+	margin-top: 1.5rem;
+}
+
+[data-step='1'] {
+	margin-top: 2.5rem;
+}
+
+.wrapper__form,
+.wrapper__options,
+.wrapper__summary {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	align-items: flex-start;
+	gap: 1.5rem;
 	min-width: 25rem;
+	transition: transform 300ms ease-in-out, opacity 300ms ease-in-out;
+	transform: translateX(-100%);
+	opacity: 0;
+	min-height: 11.375rem;
 }
 
-.wrapper__form:nth-child(2){
-	transform: translateX(30%)
+.wrapper__options,
+.wrapper__summary {
+	gap: 0;
 }
 
-.wrapper__label{
+/*buscar una manera de hacer que el wrapper__form si el actualCardStep no es 1 este se oculte
+* buscar una manera de hacer que si el actualCardStep no es 2 se oculte wrapper__options
+* buscar una manera de hacer que si el actualCardStep no es 3 se oculte wrapper__summary
+* Si el actualCardStep es 4 salga un mensaje en el centro de wrapper__content diciendo congratulations!
+* con una animacion de rebote y que salga confetti
+* */
+
+[data-step='1'] .wrapper__form {
+	transform: translateX(0);
+	opacity: 1;
+}
+
+[data-step='2'] .wrapper__options {
+	transform: translateX(-100%);
+	opacity: 1;
+}
+
+[data-step='3'] .wrapper__options {
+	transform: translateX(-200%);
+}
+
+[data-step='3'] .wrapper__summary {
+	transform: translateX(-200%);
+	opacity: 1;
+}
+
+[data-step='4'] .wrapper__summary {
+	opacity: 0;
+}
+
+.wrapper__label {
 	display: block;
 	margin-bottom: 0.5rem;
-	font-weight: bold;
 	font-size: var(--fs-label);
 	color: var(--fc-label);
-	align-self: flex-start;
-	margin-left: .5rem;
 }
 
-.wrapper__input{
-	appearance: none;
-	outline: none;
-	padding: 1rem 0.75rem;
-	background-color: transparent;
-	color: #A1A1A9;
+.wrapper__input__container {
 	border: 2px solid var(--fc-placeholder);
 	border-radius: .8rem;
-	width: 90%;
-	transition: border 200ms ease-in;
 }
 
-.wrapper__input.invalid{
-	border-color: red;
+.wrapper__input {
+	display: inline-block;
+	appearance: none;
+	outline: none;
+	border: none;
+	padding: 1rem .75rem;
+	background-color: transparent;
+	font-size: var(--fs-tab-text);
+	width: 100%;
+	font-family: inherit;
+	color: var(--fc-text);
 }
 
-.wrapper__input + .wrapper__label{
-	margin-top: 2rem;
+.wrapper__input__container+.wrapper__input__container {
+	margin-top: 1.5rem;
 }
 
-.wrapper__button{
+.input--error {
+	border-top-right-radius: 0;
+	border-color: var(--error-color);
+	position: relative;
+}
+
+.input--error::before {
+	content: attr(data-error);
+	position: absolute;
+	max-width: 18rem;
+	top: -25px;
+	right: -2px;
+	height: 1.5rem;
+	background-color: var(--error-color);
+	z-index: -1;
+	font-size: var(--fs-label);
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+	padding-inline: .3rem;
+	white-space: nowrap;
+}
+
+.wrapper__input::placeholder {
+	color: var(--fc-placeholder);
+}
+
+.wrapper__options {
+	transform: translateX(100%)
+}
+
+.wrapper__option {
+	text-align: left;
+	width: 100%;
+	padding: 1rem .8rem;
+	border-radius: .8rem;
+	appearance: none;
+	background-color: var(--bg-input);
+	color: var(--fc-label);
+	border: none;
+	cursor: pointer;
+	border: 2px solid var(--fc-placeholder);
+}
+
+.wrapper__option+.wrapper__option {
+	margin-top: 1rem;
+}
+
+.wrapper__option.selected {
+	color: var(--fc-text);
+	background-color: var(--btn-primary);
+	border-color: var(--btn-secondary);
+	font-weight: 600
+}
+
+.wrapper__button {
 	margin-top: 2.5rem;
 	display: inline-block;
 	border: none;
@@ -150,41 +327,73 @@ body{
 	color: var(--fc-text);
 	border-radius: 5rem;
 	font-size: var(--fs-tab-text);
-	font-weight: bold;
 	cursor: pointer;
+	align-self: center;
+	font-family: inherit;
+	transition: opacity 100ms ease, transform 100ms ease;
 }
 
-.wrapper__steps{
+.wrapper__button:hover,
+.wrapper__button:focus {
+	opacity: .8;
+	transform: scale(1.06);
+}
+
+.wrapper__steps {
 	display: flex;
 	align-items: center;
 	align-self: flex-start;
 	margin-left: 25%;
 }
 
-.wrapper__actual-step{
+.wrapper__actual-step {
 	font-size: var(--fs-label);
 	font-weight: bold;
 	color: var(--bg-input);
 	margin-right: 1.5rem;
 }
 
-.wrapper__step{
+.wrapper__step {
 	appearance: none;
 	background-color: var(--bg-input);
-	width: .6rem;
-	height: .6rem;
+	border: none;
+	width: .7rem;
+	height: .7rem;
 	border-radius: 50%;
 }
 
-.wrapper__step + .wrapper__step{
-	margin-left: .6rem;
+.wrapper__step+.wrapper__step {
+	margin-left: .8rem;
 }
 
-.wrapper__step:checked{
+.wrapper__step.checked {
 	background-color: var(--btn-secondary);
-	box-shadow: 0 0 0 5px color-mix(in srgb, var(--btn-primary) 60%, transparent);
+	box-shadow: 0 0 0 5px #312C5D;
 }
 
-.wrapper__step.passed{
+.wrapper__step.passed {
 	background-color: var(--btn-secondary);
+}
+
+.summary__name,
+.summary__topics,
+.summary__email {
+	margin: 0;
+}
+
+.summary__name {
+	margin-bottom: .6rem;
+}
+
+.summary__list {
+	padding: 0;
+}
+
+.summary__list__item {
+	margin-left: 1.5rem;
+	margin-top: .3rem;
+}
+
+.summary__topics {
+	margin-top: 2rem;
 }

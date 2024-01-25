@@ -12,30 +12,46 @@
 	<img src='./assets/img/blur-radial.svg' alt='' class='shine-left shine'>
 
 	<main class='main'>
-		<div class='wrapper' data-step='1'>
+		<div class='wrapper'>
 			<div class='wrapper__content'>
 				<h1 class='wrapper__title'>Register</h1>
-					<div class="wrapper__forms">
+					<div class="wrapper__cards" data-step='1'>
 						<form class='wrapper__form'>
-							<label class="wrapper__label" for="name">Name</label>
-							<input class="wrapper__input" type="text" name="name" placeholder='enter your name' required autocomplete='off'>
-							<label class="wrapper__label" for="email">Email</label>
-							<input class="wrapper__input" type="text" name="email" placeholder='example@gmail.com' required autocomplete='off'>
-							<button class="wrapper__button" type="submit" name="button">Continue</button>
+							<div class='wrapper--container'>
+								<label class="wrapper__label text--semibold" for="name">Name</label>
+								<div class='wrapper__input__container'>
+									<input class="wrapper__input text--semibold" type="text" name="name" placeholder='enter your name' required autocomplete='off'>
+								</div>
+							</div>
+							<div class='wrapper--container'>
+								<label class="wrapper__label text--semibold" for="email">Email</label>
+								<div class='wrapper__input__container'>
+									<input class="wrapper__input text--semibold" type="text" name="email" placeholder='example@gmail.com' required autocomplete='off'>
+								</div>
+							</div>
 						</form>
 
-						<form class='wrapper__form'>
-							<button class='wrapper__option wrapper__option--SD selected' value='Software Development'>Software Development</button>
-							<button class='wrapper__option wrapper__option--UX' value='User Experience'>User Experience</button>
+						<div class='wrapper__options'>
+							<button class='wrapper__option wrapper__option--SD' value='Software Development'>Software Development</button>
+							<button class='wrapper__option wrapper__option--UX selected' value='User Experience'>User Experience</button>
 							<button class='wrapper__option wrapper__option--GD' value='Graphic Design'>Graphic Design</button>
-						</form>
+						</div>
+
+						<div class='wrapper__summary'>
+							<h2 class='summary__name text--semibold font-size--medium'></h2>
+							<h2 class='summary__email text--semibold font-size--medium'></h2>
+							<h2 class='summary__topics text--semibold font--gray font-size--medium'>Topics:</h2>
+							<ul class="summary__list">
+							</ul>
+						</div>
 					</div>
+					<button class="wrapper__button text--semibold" type="submit" name="button">Continue</button>
 			</div>
 			<div class='wrapper__steps'>
 				<span class="wrapper__actual-step">Step 1 of 3</span>
-				<input class="wrapper__step" type='radio' name='step' checked>
-				<input class="wrapper__step" type='radio' name='step'>
-				<input class="wrapper__step" type='radio' name='step'>
+					<button class='wrapper__step checked'></button>
+					<button class='wrapper__step'></button>
+					<button class='wrapper__step'></button>
 			</div>
 		</div>
 	</main>
