@@ -1,0 +1,353 @@
+@font-face {
+	font-family: 'Inter';
+	src: local('Inter'),
+		url('./assets/fonts/Inter-Regular.ttf') format('truetype'),
+		url('./assets/fonts/Inter-Regular.woff2') format('woff2');
+	font-weight: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Inter';
+	src: local('Inter'),
+		url('./assets/fonts/Inter-SemiBold.ttf') format('truetype'),
+		url('./assets/fonts/Inter-SemiBold.woff2') format('woff2');
+	font-weight: 600;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Inter';
+	src: local('Inter Bold'),
+		url('./assets/fonts/Inter-Bold.ttf') format('truetype'),
+		url('./assets/fonts/Inter-Bold.woff2') format('woff2');
+	font-weight: bold;
+	font-display: swap;
+}
+
+:root {
+	--wrapper-width: 31.25rem;
+
+	--fs-title: 1.25rem;
+	--fs-text: 1rem;
+	--fs-tab-text: 0.875rem;
+	--fs-label: 0.75rem;
+
+	--fc-text: #E5E7EB;
+	--fc-label: #A1A1A9;
+	--fc-placeholder: #4D5562;
+
+	--bg-input: #394150;
+	--bg-body: #121826;
+	--bg-card: #212936;
+
+	--btn-primary: #652CD1;
+	--btn-secondary: #845EEE;
+
+	--error-color: #9D2417;
+	--padding: 1rem
+}
+
+@media (max-width: 768px){
+	:root {
+		--fs-title: 1rem;
+		--fs-text: 0.9rem;
+		--fs-tab-text: 0.8rem;
+		--fs-label: 0.75rem;
+	}
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-size: var(--fs-text);
+	font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	background-color: var(--bg-body);
+	color: var(--fc-text);
+	line-height: 1.5;
+	letter-spacing: 0.020rem;
+	overflow: hidden;
+	height: 100svh;
+}
+
+.main {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.shine {
+	position: absolute;
+	z-index: -1;
+}
+
+.shine-left {
+	left: -25%;
+	top: -50%;
+}
+
+.shine-right {
+	right: -25%;
+	bottom: -50%;
+}
+
+.arrow-back{
+	cursor: pointer;
+	user-select: none;
+	transition: opacity 200ms ease-in, color 150ms ease-in-out;
+	opacity: 0;
+	visibility: hidden;
+	color: var(--fc-label);
+
+	&:hover {
+		color: inherit;
+	}
+}
+
+/* ***global modifiers*** */
+
+.text--semibold {
+	font-weight: 600;
+}
+
+.font--gray {
+	color: var(--fc-label)
+}
+
+.font-size--medium {
+	font-size: var(--fs-text)
+}
+
+.wrapper--container {
+	width: 100%;
+}
+
+.animation--bounceAndConfetti {
+	justify-content: center;
+	align-items: center;
+}
+
+/* ***components*** */
+
+.wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	gap: 1.2rem;
+	width: min(var(--wrapper-width), 80vw);
+}
+
+.wrapper__content {
+	display: flex;
+	flex-direction: column;
+	background-color: var(--bg-card);
+	border: 2px solid var(--bg-input);
+	border-radius: 1rem;
+	padding: 2.5rem 3rem;
+}
+
+.wrapper__title {
+	margin: 0;
+	font-size: var(--fs-title);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.wrapper__cards {
+	display: flex;
+	overflow: hidden;
+	margin-top: 2.5rem;
+	max-width: 25rem;
+	min-height: 12.5rem;
+}
+
+.wrapper__form,
+.wrapper__options,
+.wrapper__summary {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	align-self: flex-start;
+	gap: 1.5rem;
+	min-width: 25rem;
+	transition: transform 300ms ease-in-out, opacity 250ms ease-in-out;
+}
+
+.wrapper__card:not(.actual){
+	position: absolute;
+	opacity: 0;
+	visibility: hidden;
+}
+
+.wrapper__options,
+.wrapper__summary {
+	gap: 0;
+}
+
+.wrapper__label {
+	display: block;
+	margin-bottom: 0.5rem;
+	font-size: var(--fs-label);
+	color: var(--fc-label);
+}
+
+.wrapper__input__container {
+	border: 2px solid var(--fc-placeholder);
+	border-radius: .8rem;
+}
+
+.wrapper__input {
+	display: inline-block;
+	appearance: none;
+	outline: none;
+	border: none;
+	padding: 1rem .75rem;
+	background-color: transparent;
+	font-size: var(--fs-tab-text);
+	width: 100%;
+	font-family: inherit;
+	color: var(--fc-text);
+}
+
+.wrapper__input__container+.wrapper__input__container {
+	margin-top: 1.5rem;
+}
+
+.input--error {
+	border-top-right-radius: 0;
+	border-color: var(--error-color);
+	position: relative;
+}
+
+.input--error::before {
+	content: attr(data-error);
+	position: absolute;
+	max-width: min(85%, 18rem);
+	padding-inline: .5rem;
+	top: -26px;
+	right: -2px;
+	height: 1.5rem;
+	background-color: var(--error-color);
+	border-radius: .5rem .5rem 0 0;
+	z-index: -1;
+	font-size: var(--fs-label);
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+	white-space: nowrap;
+}
+
+.wrapper__input::placeholder {
+	color: var(--fc-placeholder);
+}
+
+.wrapper__option {
+	text-align: left;
+	width: 100%;
+	padding: 1rem .8rem;
+	border-radius: .8rem;
+	appearance: none;
+	background-color: var(--bg-input);
+	color: var(--fc-label);
+	border: none;
+	cursor: pointer;
+	border: 2px solid var(--fc-placeholder);
+}
+
+.wrapper__option+.wrapper__option {
+	margin-top: 1rem;
+}
+
+.wrapper__option.selected {
+	color: var(--fc-text);
+	background-color: var(--btn-primary);
+	border-color: var(--btn-secondary);
+	font-weight: 600
+}
+
+.wrapper__button {
+	margin-top: 2.5rem;
+	display: inline-block;
+	border: none;
+	appearance: none;
+	width: 8.5rem;
+	background-image: linear-gradient(var(--btn-secondary), var(--btn-primary));
+	padding: .8rem .5rem;
+	color: var(--fc-text);
+	border-radius: 5rem;
+	font-size: var(--fs-tab-text);
+	cursor: pointer;
+	align-self: center;
+	font-family: inherit;
+	transition: opacity 100ms ease, transform 100ms ease;
+}
+
+.wrapper__button:hover{
+	opacity: .8;
+}
+
+.wrapper__steps {
+	display: flex;
+	align-items: center;
+	align-self: flex-start;
+	margin-left: 25%;
+}
+
+.wrapper__actual-step {
+	font-size: var(--fs-label);
+	font-weight: bold;
+	color: var(--bg-input);
+	margin-right: 1.5rem;
+}
+
+.wrapper__step {
+	appearance: none;
+	background-color: var(--bg-input);
+	border: none;
+	width: .7rem;
+	height: .7rem;
+	border-radius: 50%;
+}
+
+.wrapper__step+.wrapper__step {
+	margin-left: .8rem;
+}
+
+.wrapper__step.checked {
+	background-color: var(--btn-secondary);
+	box-shadow: 0 0 0 5px #312C5D;
+}
+
+.wrapper__step.passed {
+	background-color: var(--btn-secondary);
+}
+
+.summary__name,
+.summary__topics,
+.summary__email {
+	margin: 0;
+}
+
+.summary__name {
+	margin-bottom: .6rem;
+}
+
+.summary__list {
+	padding: 0;
+}
+
+.summary__list__item {
+	margin-left: 1.5rem;
+	margin-top: .3rem;
+}
+
+.summary__topics {
+	margin-top: 2rem;
+}
