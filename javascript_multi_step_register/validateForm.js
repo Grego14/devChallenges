@@ -3,17 +3,14 @@ const d = document
 const qs = s => d.querySelector(`${s}`)
 const qsa = s => d.querySelectorAll(`${s}`)
 
-const emailRegex =
-	/^((?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\]))$/
-const nameRegex = /^[a-zA-Z\s.'-]{3,}$/
-
-export default function validateForm({form, inputs = {}, options, summary = {}, button, callback}){
+export default function validateForm({form, inputs = {}, options, summary = {}, button = {}, callback, cards = {},}){
 	/*
-	 * form -> string
-	 * inputs -> object {name, min, max, regex}
+	 * form -> string (form is a container with inputs and options)
+	 * inputs ---> object (props --> name -> string, min -> number, max -> number, regex -> RegExp)
 	 * options -> string (every selected option will be a input.type='button') (every option will be sended to optionsList)
-	 * summary -> object {name, email, optionsList !== 0}
-	 * button -> string
+	 * summary ---> object (props --> name, email, optionsList !== 0)
+	 * button ---> object (props -->  (class, btnText) -> strings)
+	 * btnText is the text of the button when the final card is about to be shown
 	 * callback -> function
 	*/
 
@@ -22,7 +19,9 @@ export default function validateForm({form, inputs = {}, options, summary = {}, 
 	if(!validateType(inputs, 'object')) throw new TypeError(`${getError('instanceOrType', 'inputs', 'object')}`)
 	if(Object.keys(inputs).length === 0) throw new RangeError(`${getError('empty', 'inputs')}`)
 
-	if(!validateType(button, 'string') || !qs(verifyDot(button))) throw new TypeError(`${getError('selector', 'button')}`)
+	if(!validateType(button, 'object')) throw new TypeError(`${getError('instanceOrType', 'object')}`)
+	if(Object.keys(button).length === 0) throw new RangeError(`${getError('empty', 'button')}`)
+
 	if(!validateType(options, 'string') || !qsa(verifyDot(options))) throw new TypeError(`${getError('selector', 'options')}`)
 
 	if(!validateType(summary, 'object')) throw new TypeError(`${getError('instanceOrType', 'summary', 'object')}`)
@@ -30,11 +29,54 @@ export default function validateForm({form, inputs = {}, options, summary = {}, 
 
 	if(!summary.name || !summary.email || !summary.optionsList) throw new Error(`${getError('invalidProps', 'summary', 'name, email, optionsList')}`)
 
+	// validate button props
+	for (const [key, value] of Object.entries(button)) {
+		// next step: make the first argument of validateType be an array to avoid making all these lines
+		// if every prop is a 'value'
+		if(!validateType(button.class, 'string')) throw new TypeError(`${getError('instanceOrType', `(${key}.class)`, 'string')}`)
+		if(!validateType(button.btnText, 'string')) throw new TypeError(`${getError('instanceOrType', `(${ke}.btnText)`, 'string')}`)
+	}
+
+	// validate inputs props
+	for (const [key, value] of Object.entries(inputs)) {
+		if(!validateType(value.name, 'string')) throw new TypeError(`${getError('instanceOrType', `(${key}.name)`, 'string')}`)
+		if(!validateType(value.min, 'number')) throw new TypeError(`${getError('instanceOrType', `(${key}.min)`, 'number')}`)
+		if(!validateType(value.max, 'number')) throw new TypeError(`${getError('instanceOrType', `(${key}.max)`, 'number')}`)
+		if(!(value.regex instanceof RegExp)) throw new TypeError(`${getError('instanceOrType', `(${key}.regex)`, 'RegExp')}`)
+	}
+
+	// validate summary props
 	for (const [key, value] of Object.entries(summary)) {
 		if(!validateType(value, 'string')) throw new TypeError(`${getError('instanceOrType', `summary '${key}'`, 'string')}`)
 	}
 
 	if(callback && !validateType(callback, 'function')) throw new TypeError(`${getError('instanceOrType', 'callback', 'function')}`)
+
+	if(callback) callback({form, inputs, options, summary, button})
+
+	const $form = qs(verifyDot(form))
+	const $button = qs(verifyDot(button.class))
+	
+	d.addEventListener('click', e => {
+		buttonHandler({e,
+			button: $button, 
+			cards: qsa(verifyDot(cards.cards)),
+			className: cards.className,
+			btnText: button.btnText })
+	})
+
+	// summary must be a valid container with a template who has the following elements: name, email, optionsList
+	// or summary must be a valid container with the following elements: name, email, optionsList
+
+	if('content' in d.createElement('template')){
+		const template = d.getElementById('summary')
+		const clone = template.content.cloneNode(true)
+		//const $summaryName = clone.qs()
+		const $summaryName = clone.querySelector(verifyDot(summary.name))
+		const $summaryEmail = clone.querySelector(verifyDot(summary.email))
+		const $summaryList = clone.querySelector(verifyDot(summary.optionsList))
+		console.log($summaryName, '\n',$summaryEmail,'\n', $summaryList)
+	}
 }
 
 const errorsMessages = {
@@ -49,6 +91,32 @@ const errorsMessages = {
 	selector: 'must be a CSS selector',
 	invalidProps: 'must contain the followed props:'
 }
+
+function buttonHandler({e,button, cards, className, btnText}){
+	const actualCard = Array.from(cards).find(card => card.classList.contains(className))
+	if(e.target === button){
+		cardsHandler({e, cards, className, actualCard, button, callback: updateBtn({button, btnText})})
+	}
+}
+
+function cardsHandler({e, cards, className, actualCard, callback, button}){
+
+	if(!validateType(callback, 'function')) throw new TypeError(`${getError('instanceOrType', 'callback', 'function')}`)
+
+	if(actualCard) actualCard.classList.remove(className)
+
+	const newCard = actualCard?.nextElementSibling
+	if(newCard) newCard.classList.add(className)
+
+	if(callback && newCard === cards[cards.length - 1]) callback({button})
+	return {oldCard: actualCard, newCard}
+}
+
+function updateBtn({button, btnText}){
+	button.textContent = btnText
+}
+
+// validation functions
 
 // returns the length of characters in a string (no whitespaces)
 function characters(string) {

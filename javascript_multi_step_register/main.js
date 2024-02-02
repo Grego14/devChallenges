@@ -14,20 +14,29 @@ validateForm({
 		name: {
 			min: 3,
 			max: 25,
+			name: 'name',
 			regex: nameRegex,
 		},
 		email: {
 			min: 64,
 			max: 254,
+			name: 'email',
 			regex: emailRegex
 		}
 	},
 	options: 'wrapper__option',
-	button: '.wrapper__button',
+	button: {
+		class: 'wrapper__button',
+		btnText: 'Confirm',
+	},
 	summary: {
 		name: 'summary__name',
 		email: 'summary__email',
 		optionsList: 'summary__list'
+	},
+	cards: {
+		className: 'actual',
+		cards: 'wrapper__card'
 	}
 })
 
