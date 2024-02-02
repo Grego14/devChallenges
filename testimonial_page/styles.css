@@ -43,7 +43,6 @@ body{
 }
 
 .main{
-	padding: 10rem 4rem;
 	height: 100svh;
 }
 
@@ -52,6 +51,7 @@ body{
 .wrapper{
 	display: grid;
 	grid-template-columns: 50% 50%;
+	padding: 10rem 4rem;
 }
 
 .wrapper__item{
@@ -156,7 +156,7 @@ body{
 .star{
 	display: inline-block;
 	width: 22px;
-	height: 25px;
+	height: 22px;
 }
 
 .review-card__icon{
@@ -168,7 +168,7 @@ body{
 
 .icon{
 	width: 100%;
-	min-height: 100%;
+	height: auto;
 	object-fit: cover;
 }
 
@@ -182,4 +182,38 @@ body{
 	font-weight: bold;
 	display: block;
 	margin: 0.5rem 0;
+}
+
+@media screen and (max-width: 720px){
+	:root{
+		--fs-normal: .9rem;
+		--fs-small: 0.75rem;
+		--fs-medium: 1.15rem;
+		--fs-title: 2.20rem;
+	}
+
+	.wrapper{
+		padding: 8rem 2rem 10rem 2rem;
+		grid-template-columns: 1fr;
+	}
+
+	.wrapper__item + .wrapper__item{
+		margin-top: 4rem;
+	}
+}
+
+@media screen and (max-width: 640px){
+	:root{
+		--fs-normal: .9rem;
+		--fs-medium: 1rem;
+		--fs-title: 2rem;
+	}
+}
+
+@media screen and (max-width: 480px){
+	:root{
+		--fs-normal: .8rem;
+		--fs-small: 0.65rem;
+		--fs-title: 2rem;
+	}
 }
