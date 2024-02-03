@@ -14,17 +14,20 @@ validateForm({
 		name: {
 			min: 3,
 			max: 25,
-			name: 'name',
+			inputName: 'name',
 			regex: nameRegex,
 		},
 		email: {
 			min: 64,
 			max: 254,
-			name: 'email',
-			regex: emailRegex
-		}
+			inputName: 'email',
+			regex: emailRegex,
+		},
 	},
-	options: 'wrapper__option',
+	options: {
+		class: 'wrapper__option',
+		selected: 'selected',
+	},
 	button: {
 		class: 'wrapper__button',
 		btnText: 'Confirm',
@@ -32,12 +35,13 @@ validateForm({
 	summary: {
 		name: 'summary__name',
 		email: 'summary__email',
-		optionsList: 'summary__list'
+		optionsList: 'summary__list',
+		templateId: 'summary'
 	},
 	cards: {
 		className: 'actual',
-		cards: 'wrapper__card'
-	}
+		cards: 'wrapper__card',
+	},
 })
 
 //const inputs = qsa('.wrapper__input')
