@@ -9,39 +9,9 @@ const emailRegex =
 const nameRegex = /^[a-zA-Z\s.'-]{3,}$/
 
 validateForm({
-	form: '.wrapper__form',
-	inputs: {
-		name: {
-			min: 3,
-			max: 25,
-			inputName: 'name',
-			regex: nameRegex,
-		},
-		email: {
-			min: 64,
-			max: 254,
-			inputName: 'email',
-			regex: emailRegex,
-		},
+	container: {
 	},
-	options: {
-		class: 'wrapper__option',
-		selected: 'selected',
-	},
-	button: {
-		class: 'wrapper__button',
-		btnText: 'Confirm',
-	},
-	summary: {
-		name: 'summary__name',
-		email: 'summary__email',
-		optionsList: 'summary__list',
-		templateId: 'summary'
-	},
-	cards: {
-		className: 'actual',
-		cards: 'wrapper__card',
-	},
+	buttons: {}
 })
 
 //const inputs = qsa('.wrapper__input')
