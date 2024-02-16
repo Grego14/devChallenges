@@ -25,42 +25,213 @@
 	font-display: swap;
 }
 
-:root {
-	--wrapper-width: 31.25rem;
+$f-size-title: 1.25rem;
+$f-size-normal: 1rem;
+$f-size-tab-text: 0.875rem;
+$f-size-label: 0.75rem;
 
-	--fs-title: 1.25rem;
-	--fs-text: 1rem;
-	--fs-tab-text: 0.875rem;
-	--fs-label: 0.75rem;
+$wrapper-width: 31.25rem;
+$wrapper-height: 25rem;
+$f-color-primary: #E5E7EB;
+$f-color-label: #A1A1A9;
+$f-color-placeholder: #4D5562;
 
-	--fc-text: #E5E7EB;
-	--fc-label: #A1A1A9;
-	--fc-placeholder: #4D5562;
+$b-color-body: #121826;
+$b-color-card: #212936;
+$b-color-input: #394150;
 
-	--bg-input: #394150;
-	--bg-body: #121826;
-	--bg-card: #212936;
+$button-color-normal: #652CD1;
+$button-color-checked: #845EEE;
 
-	--btn-primary: #652CD1;
-	--btn-secondary: #845EEE;
+$border-color-error: #9D2417;
+$padding: 1rem;
 
-	--error-color: #9D2417;
-	--padding: 1rem
+@mixin reset-styles($btn) {
+
+  @if $btn{
+		cursor: pointer;
+	}
+
+	appearance: none;
+	background-color: unset;
+	border: none;
 }
 
-* {
+@mixin font-style($f-size, $f-color, $f-weight) {
+	color: $f-color;
+	font-size: $f-size;
+	font-weight: $f-weight;
+}
+
+@mixin hover() {
+	&:hover:not([disabled]){
+		@content;
+	}
+}
+
+*, *::before, *::after {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	color: inherit;
+	font-family: inherit;
 }
 
 body {
-	font-size: var(--fs-text);
 	font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-	background-color: var(--bg-body);
-	color: var(--fc-text);
+	background-color: $b-color-body;
+	color: $f-color-primary;
 	line-height: 1.5;
 	letter-spacing: 0.020rem;
 	overflow: hidden;
 	height: 100svh;
+}
+
+.shine{
+	position: absolute;
+	z-index: -1;
+}
+
+.shine-left{
+	left: -25%;
+	top: -40%;
+}
+
+.shine-right{
+	right: -25%;
+	bottom: -40%;
+}
+
+.main{
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.wrapper__card{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	min-height: $wrapper-height;
+	width: min($wrapper-width, 85vw);
+	background-color: $b-color-card;
+	border: 2px solid $b-color-input;
+	border-radius: .8rem;
+	padding: 3rem;
+}
+
+.wrapper__form.hidden{
+	display: none;
+}
+
+.wrapper__label{
+	display: block;
+	margin-bottom: .5rem;
+	align-self: flex-start;
+	font-size: $f-size-tab-text;
+	@include font-style($f-size-label, $f-color-label, 600)
+}
+
+.wrapper__input__container{
+	width: 100%;
+	border: 2px solid $f-color-placeholder;
+	border-radius: .6rem;
+}
+
+.wrapper__input{
+	outline: none;
+	padding: 1rem .8rem;
+	width: 100%;
+
+	@include reset-styles(false);
+	@include font-style($f-size-label, $f-color-label, bold);
+
+	&::placeholder{
+		@include font-style(inherit, rgb($f-color-label, .6), 600);
+	}
+}
+
+.wrapper__title{
+	margin-bottom: 2rem;
+}
+
+.wrapper__input__container + *{
+	margin-top: 1rem;
+}
+
+.wrapper__forms{
+	min-width: 100%;
+}
+
+.wrapper__form-register{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.wrapper__button{
+	background-image: linear-gradient($button-color-checked, $button-color-normal);
+	@include font-style($f-size-label, inherit, 600);
+	padding: .8rem 2.2rem;
+	margin-top: 3rem;
+	border-radius: 3rem;
+	transition: opacity 150ms ease-in;
+
+	@include hover{
+		opacity: .8;
+	}
+
+	align-self: center;
+}
+
+.wrapper__actual-step{
+	@include font-style($f-size-label, $f-color-placeholder, 600);
+}
+
+input[type='button'],
+.wrapper__step,
+.wrapper__button{
+	@include reset-styles(true);
+}
+
+.wrapper__steps, .wrapper__steps__buttons{
+	display: flex;
+	align-items: center;
+}
+
+.wrapper__steps{
+	margin-top: 1rem;
+	justify-content: center;
+}
+
+.wrapper__steps__buttons{
+	margin-left: 1.5rem;
+}
+
+.wrapper__step{
+	background-color: $b-color-input;
+	display: inline-block;
+	padding: .35rem .35rem;
+	border-radius: 2rem;
+	transition: opacity 150ms ease-in;
+
+	@include hover{
+		opacity: .5;
+	}
+
+	&.actual{
+		background-color: $button-color-checked;
+		box-shadow: 0 0 0 5px rgba($button-color-checked, .3);
+	}
+
+	&.passed{
+		background-color: $button-color-checked;
+	}
+
+	&+.wrapper__step{
+		margin-left: 1rem;
+	}
 }

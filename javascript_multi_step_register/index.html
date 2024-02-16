@@ -14,28 +14,27 @@
 	<main class='main'>
 			<div class='wrapper'>
 				<section class='wrapper__card'>
-					<div class='wrapper__form'>
-						<button class="wrapper__arrow">←</button>
-						<h1>Register</h1>
-						<div class='wrapper__form wrapper__form-register' data-card='1'>
+					<div class='wrapper__forms'>
+						<h1 class='wrapper__title'>Register</h1>
+						<div class='wrapper__form wrapper__form-register actual'>
+							<label class='wrapper__label' for='name'>Name</label>
 							<div class='wrapper__input__container'>
-								<label for='name'>Name</label>
 								<input type='text' id='name' name='name' placeholder='enter your name' required class='wrapper__input'>
 							</div>
 
+							<label class='wrapper__label' for='email'>Email</label>
 							<div class='wrapper__input__container'>
-								<label for='email'>Email</label>
 								<input type='email' id='email' name='email' placeholder='example@gmail.com' required class='wrapper__input'>
 							</div>
 						</div>
 
-						<div class='wrapper__form wrapper__form-options' data-card='2'>
+						<div class='wrapper__form wrapper__form-options hidden'>
 							<input type='button' value='Software Development'>
 							<input type='button' value='User Experience'>
 							<input type='button' value='Graphic Design'>
 						</div>
 
-						<div class='wrapper__form wrapper__form-summary' data-card='3'>
+						<div class='wrapper__form wrapper__form-summary hidden'>
 							<p>Name:</p>
 							<p>Email:</p>
 
@@ -44,11 +43,15 @@
 							</ul>
 						</div>
 					</div>
+					<button class='wrapper__button'>Continue</button>
 				</section>
 				<section class='wrapper__steps'>
-					<button class='wrapper__step actual'></button>
-					<button class='wrapper__step'></button>
-					<button class='wrapper__step'></button>
+					<span class='wrapper__actual-step'>Step 1 of 3</span>
+					<div class='wrapper__steps__buttons'>
+						<button class='wrapper__step actual'></button>
+						<button class='wrapper__step passed'></button>
+						<button class='wrapper__step'></button>
+					</div>
 				</section>
 			</div>
 	</main>

@@ -1,0 +1,193 @@
+@font-face {
+  font-family: "Inter";
+  src: local("Inter"), url("./assets/fonts/Inter-Regular.ttf") format("truetype"), url("./assets/fonts/Inter-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: local("Inter"), url("./assets/fonts/Inter-SemiBold.ttf") format("truetype"), url("./assets/fonts/Inter-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: local("Inter Bold"), url("./assets/fonts/Inter-Bold.ttf") format("truetype"), url("./assets/fonts/Inter-Bold.woff2") format("woff2");
+  font-weight: bold;
+  font-display: swap;
+}
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: inherit;
+  font-family: inherit;
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background-color: #121826;
+  color: #E5E7EB;
+  line-height: 1.5;
+  letter-spacing: 0.02rem;
+  overflow: hidden;
+  height: 100svh;
+}
+
+.shine {
+  position: absolute;
+  z-index: -1;
+}
+
+.shine-left {
+  left: -25%;
+  top: -40%;
+}
+
+.shine-right {
+  right: -25%;
+  bottom: -40%;
+}
+
+.main {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapper__card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 25rem;
+  width: min(31.25rem, 85vw);
+  background-color: #212936;
+  border: 2px solid #394150;
+  border-radius: 0.8rem;
+  padding: 3rem;
+}
+
+.wrapper__form.hidden {
+  display: none;
+}
+
+.wrapper__label {
+  display: block;
+  margin-bottom: 0.5rem;
+  align-self: flex-start;
+  font-size: 0.875rem;
+  color: #A1A1A9;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.wrapper__input__container {
+  width: 100%;
+  border: 2px solid #4D5562;
+  border-radius: 0.6rem;
+}
+
+.wrapper__input {
+  outline: none;
+  padding: 1rem 0.8rem;
+  width: 100%;
+  appearance: none;
+  background-color: unset;
+  border: none;
+  color: #A1A1A9;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+.wrapper__input::placeholder {
+  color: rgba(161, 161, 169, 0.6);
+  font-size: inherit;
+  font-weight: 600;
+}
+
+.wrapper__title {
+  margin-bottom: 2rem;
+}
+
+.wrapper__input__container + * {
+  margin-top: 1rem;
+}
+
+.wrapper__forms {
+  min-width: 100%;
+}
+
+.wrapper__form-register {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper__button {
+  background-image: linear-gradient(#845EEE, #652CD1);
+  color: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.8rem 2.2rem;
+  margin-top: 3rem;
+  border-radius: 3rem;
+  transition: opacity 150ms ease-in;
+  align-self: center;
+}
+.wrapper__button:hover:not([disabled]) {
+  opacity: 0.8;
+}
+
+.wrapper__actual-step {
+  color: #4D5562;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+input[type=button],
+.wrapper__step,
+.wrapper__button {
+  cursor: pointer;
+  appearance: none;
+  background-color: unset;
+  border: none;
+}
+
+.wrapper__steps, .wrapper__steps__buttons {
+  display: flex;
+  align-items: center;
+}
+
+.wrapper__steps {
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+.wrapper__steps__buttons {
+  margin-left: 1.5rem;
+}
+
+.wrapper__step {
+  background-color: #394150;
+  display: inline-block;
+  padding: 0.35rem 0.35rem;
+  border-radius: 2rem;
+  transition: opacity 150ms ease-in;
+}
+.wrapper__step:hover:not([disabled]) {
+  opacity: 0.5;
+}
+.wrapper__step.actual {
+  background-color: #845EEE;
+  box-shadow: 0 0 0 5px rgba(132, 94, 238, 0.3);
+}
+.wrapper__step.passed {
+  background-color: #845EEE;
+}
+.wrapper__step + .wrapper__step {
+  margin-left: 1rem;
+}
+
+/*# sourceMappingURL=styles.css.map */
