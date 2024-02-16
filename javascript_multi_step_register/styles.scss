@@ -109,6 +109,12 @@ body {
 	justify-content: center;
 }
 
+.wrapper__option,
+.wrapper__step,
+.wrapper__button{
+	@include reset-styles(true);
+}
+
 .wrapper__card{
 	display: flex;
 	flex-direction: column;
@@ -172,29 +178,50 @@ body {
 	align-items: center;
 }
 
+//.wrapper__form-options{
+//}
+
+.wrapper__option{
+	display: block;
+	min-width: 100%;
+	background-color: $b-color-input;
+	@include font-style($f-size-tab-text, rgb($f-color-label, .8), 600);
+	padding: 1rem .8rem;
+	border: 2px solid $f-color-placeholder;
+	border-radius: .8rem;
+	text-align: left;
+	transition: opacity 150ms ease-in;
+
+	&.selected{
+		@include font-style($f-size-tab-text, $f-color-primary, bold);
+		background-color: $button-color-normal;
+		border-color: $button-color-checked;
+	}
+}
+
+.wrapper__option,
+.wrapper__button{
+	@include hover{
+		opacity: .8;
+	};
+}
+
+.wrapper__option + .wrapper__option{
+	margin-top: 1rem;
+}
+
 .wrapper__button{
 	background-image: linear-gradient($button-color-checked, $button-color-normal);
 	@include font-style($f-size-label, inherit, 600);
-	padding: .8rem 2.2rem;
+	padding: .8rem 2.5rem;
 	margin-top: 3rem;
 	border-radius: 3rem;
 	transition: opacity 150ms ease-in;
-
-	@include hover{
-		opacity: .8;
-	}
-
 	align-self: center;
 }
 
 .wrapper__actual-step{
-	@include font-style($f-size-label, $f-color-placeholder, 600);
-}
-
-input[type='button'],
-.wrapper__step,
-.wrapper__button{
-	@include reset-styles(true);
+	@include font-style($f-size-label, rgb($f-color-placeholder, .6), 600);
 }
 
 .wrapper__steps, .wrapper__steps__buttons{
@@ -204,7 +231,7 @@ input[type='button'],
 
 .wrapper__steps{
 	margin-top: 1rem;
-	justify-content: center;
+	margin-left: 25%;
 }
 
 .wrapper__steps__buttons{
