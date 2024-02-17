@@ -192,7 +192,7 @@ body {
   margin-bottom: 1.2rem;
 }
 .summary__user-info p + p {
-  margin-top: 0.8rem;
+  margin-top: 0.2rem;
 }
 
 .wrapper__form-summary {
@@ -207,6 +207,9 @@ body {
 }
 .wrapper__form-summary * li {
   margin-left: 1.5rem;
+}
+.wrapper__form-summary span + li {
+  margin-top: 0.5rem;
 }
 .wrapper__form-summary .no-topics {
   color: rgba(77, 85, 98, 0.8);

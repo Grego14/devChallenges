@@ -253,7 +253,7 @@ body {
 	margin-bottom: 1.2rem;
 
 	& p + p{
-		margin-top: .8rem;
+		margin-top: .2rem;
 	}
 }
 
@@ -266,6 +266,10 @@ body {
 
 	& * li{
 		margin-left: 1.5rem;
+	}
+
+	& span + li{
+		margin-top: .5rem;
 	}
 
 	& .no-topics{
