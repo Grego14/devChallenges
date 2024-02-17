@@ -10,11 +10,14 @@ const nameRegex = /^[a-zA-Z\s.'-]{3,}$/
 
 validateForm({
 	container: {
-	},
-	buttons: {}
+		form: qs('.wrapper__forms'),
+		card: qsa('.wrapper__card'),
+		steps: qsa('.wrapper__step'),
+		title: qs('.wrapper__title'),
+		list: qs('.summary-list'),
+		button: qs('.wrapper__button'),
+		summary: qs('.wrapper__form-summary'),
+		emailRegex: emailRegex,
+		nameRegex: nameRegex
+	}
 })
-
-//const inputs = qsa('.wrapper__input')
-//const steps = qsa('.wrapper__step')
-//const options = qsa('.wrapper__option')
-//const cards = qsa('.wrapper__card')

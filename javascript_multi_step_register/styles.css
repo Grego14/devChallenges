@@ -109,7 +109,10 @@ body {
   transition: opacity 150ms ease-in, transform 100ms ease-in;
   align-self: center;
 }
-.wrapper__card .wrapper__button:active {
+.wrapper__card .wrapper__button[disabled] {
+  opacity: 0.6;
+}
+.wrapper__card .wrapper__button:not([disabled]):active {
   transform: scale(0.95);
 }
 .wrapper__card .wrapper__button.hide {
