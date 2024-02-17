@@ -18,6 +18,7 @@ validateForm({
 		button: qs('.wrapper__button'),
 		summary: qs('.wrapper__form-summary'),
 		emailRegex: emailRegex,
-		nameRegex: nameRegex
+		nameRegex: nameRegex,
+		inputs: qsa('.wrapper__input')
 	}
 })

@@ -194,8 +194,6 @@ body {
 
 .wrapper__input__container{
 	width: 100%;
-	border: 2px solid $f-color-placeholder;
-	border-radius: .6rem;
 }
 
 .wrapper__input__container + *{
@@ -203,15 +201,24 @@ body {
 }
 
 .wrapper__input{
+	@include reset-styles(false);
+
 	outline: none;
 	padding: 1rem .8rem;
 	width: 100%;
+	border: 2px solid $f-color-placeholder;
+	border-radius: .6rem;
 
-	@include reset-styles(false);
+	@include transitions(border-color,150ms, ease-in);
+
 	@include font-style($f-size-label, $f-color-label, bold);
 
 	&::placeholder{
 		@include font-style(inherit, rgb($f-color-label, .6), 600);
+	}
+
+	&.invalid{
+		border-color: $border-color-error;
 	}
 }
 
@@ -259,6 +266,11 @@ body {
 
 	& * li{
 		margin-left: 1.5rem;
+	}
+
+	& .no-topics{
+		@include font-style($f-size-label, rgb($f-color-placeholder, .8), 600);
+		font-style: italic;
 	}
 }
 

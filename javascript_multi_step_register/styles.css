@@ -131,8 +131,6 @@ body {
 
 .wrapper__input__container {
   width: 100%;
-  border: 2px solid #4D5562;
-  border-radius: 0.6rem;
 }
 
 .wrapper__input__container + * {
@@ -140,12 +138,15 @@ body {
 }
 
 .wrapper__input {
-  outline: none;
-  padding: 1rem 0.8rem;
-  width: 100%;
   appearance: none;
   background-color: unset;
   border: none;
+  outline: none;
+  padding: 1rem 0.8rem;
+  width: 100%;
+  border: 2px solid #4D5562;
+  border-radius: 0.6rem;
+  transition: border-color 150ms ease-in;
   color: #A1A1A9;
   font-size: 0.75rem;
   font-weight: bold;
@@ -154,6 +155,9 @@ body {
   color: rgba(161, 161, 169, 0.6);
   font-size: inherit;
   font-weight: 600;
+}
+.wrapper__input.invalid {
+  border-color: #9D2417;
 }
 
 .wrapper__option {
@@ -203,6 +207,12 @@ body {
 }
 .wrapper__form-summary * li {
   margin-left: 1.5rem;
+}
+.wrapper__form-summary .no-topics {
+  color: rgba(77, 85, 98, 0.8);
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-style: italic;
 }
 
 .wrapper__actual-step {
