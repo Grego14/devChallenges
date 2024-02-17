@@ -19,22 +19,22 @@
 						<div class='wrapper__form wrapper__form-register' data-step='1'>
 							<label class='wrapper__label' for='name'>Name</label>
 							<div class='wrapper__input__container'>
-								<input type='text' id='name' name='name' placeholder='enter your name' required class='wrapper__input'>
+								<input type='text' id='name' name='name' placeholder='enter your name' required class='wrapper__input' autocomplete='off'>
 							</div>
 
 							<label class='wrapper__label' for='email'>Email</label>
 							<div class='wrapper__input__container'>
-								<input type='email' id='email' name='email' placeholder='example@gmail.com' required class='wrapper__input'>
+								<input type='email' id='email' name='email' placeholder='example@gmail.com' required class='wrapper__input' autocomplete='off'>
 							</div>
 						</div>
 
-						<div class='wrapper__form wrapper__form-options hidden' data-step='2'>
+						<div class='wrapper__form wrapper__form-options hidden' data-step='2' data-title='Which topics you are interested in?'>
 							<input class='wrapper__option' type='button' value='Software Development'>
 							<input class='wrapper__option selected' type='button' value='User Experience'>
 							<input class='wrapper__option' type='button' value='Graphic Design'>
 						</div>
 
-						<div class='wrapper__form wrapper__form-summary hidden' data-step='3'>
+						<div class='wrapper__form wrapper__form-summary hidden' data-step='3' data-title='Summary'>
 							<ul class='summary-list'></ul>
 						</div>
 					</form>
